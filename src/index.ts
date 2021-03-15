@@ -1,6 +1,5 @@
 import BaseConverter from './classes/BaseConverter';
 
-const converter = new BaseConverter('123AFFA', 16, 10);
-
-// console.log(converter.decimalTo());
-console.log(converter.otherBaseToDecimal());
+console.log(BaseConverter.decimalTo('45', 2));
+console.log(BaseConverter.otherBaseToDecimal('245', 8));
+console.log(BaseConverter.floatNumberToBinary('8.375'));
