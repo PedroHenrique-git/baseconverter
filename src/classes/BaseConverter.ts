@@ -1,4 +1,6 @@
-import { IData, hexadecimal, hexadecimalInversion } from '../database/data';
+import {
+  IData, hexadecimal, hexadecimalInversion, hexadecimalBinary,
+} from '../database/data';
 
 export default class BaseConverter {
   // decimal for binary
@@ -111,6 +113,46 @@ export default class BaseConverter {
     return {
       steps,
       result: `${integerPart}.${fractionalHouses.join('')}`,
+    };
+  }
+
+  static floatBinaryToDecimal(number: string): IData {
+    const separatedNumber: string[] = number.split('.');
+    const steps: string[] = [];
+    const integerPart = BaseConverter.otherBaseToDecimal(separatedNumber[0], 2);
+    const floatPart = separatedNumber[1];
+
+    integerPart.steps.forEach((step) => steps.push(step));
+
+    let sum = 0;
+
+    for (let i = 0; i < floatPart.length; i += 1) {
+      const result = Number(floatPart[i]) * (2 ** -(i + 1));
+      steps.push(`${Number(floatPart[i])} * 2^${-(i + 1)} = ${result}`);
+      sum += result;
+    }
+
+    return {
+      steps,
+      result: `${integerPart.result}.${String(sum).split('.')[1]}`,
+    };
+  }
+
+  static hexadecimalToBinary(number: string): IData {
+    const steps: string[] = [];
+    const dividedNumber: string[] = number.split('');
+    const result:string[] = [];
+
+    dividedNumber.forEach((n) => {
+      if (hexadecimalBinary[n]) {
+        steps.push(`${n} = ${hexadecimalBinary[n]}`);
+        result.push(hexadecimalBinary[n]);
+      }
+    });
+
+    return {
+      steps,
+      result: result.join(''),
     };
   }
 }
