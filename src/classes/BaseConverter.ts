@@ -178,11 +178,36 @@ export default class BaseConverter {
   }
 
   static octalToHexadecimal(number: string):void {
-    const octalInBinary = BaseConverter.octalToBinary(number).result.split('').reverse().join('');
-    console.log(octalInBinary, octalInBinary.slice(4, octalInBinary.length));
+    const octalInBinary = BaseConverter.octalToBinary(number).result;
+    const parts: string[] = [];
+    const addZeroLeft = (n: string) => n.padStart(4, '0');
 
-    // for (const key in hexadecimalBinary) {
-    // console.log(key);
-    // }
+    let start = 0;
+    let end = 4;
+    let r = octalInBinary.slice(start, end);
+
+    while (r !== '') {
+      parts.unshift(r);
+      start = end;
+      end += 4;
+      r = octalInBinary.slice(start, end);
+    }
+    console.log(BaseConverter.octalToBinary(number).result);
+    console.log(parts);
+
+    const newParts = parts.map((n) => {
+      let v = n;
+      if (v.length < 4) {
+        v = addZeroLeft(v);
+      }
+      for (const key in hexadecimalBinary) {
+        if (hexadecimalBinary[key] === v) {
+          v = key;
+        }
+      }
+      return v;
+    });
+
+    console.log(newParts.reverse());
   }
 }

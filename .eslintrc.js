@@ -16,5 +16,6 @@ module.exports = {
   ],
   rules: {
     'no-underscore-dangle': 0,
+    'no-restricted-syntax': 0,
   },
 };
