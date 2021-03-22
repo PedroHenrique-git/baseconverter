@@ -1,5 +1,6 @@
 import {
   IData, hexadecimal, hexadecimalInversion, hexadecimalBinary, octalBinary,
+  ExceptionhexadecimalBinary,
 } from '../database/data';
 
 export default class BaseConverter {
@@ -196,9 +197,7 @@ export default class BaseConverter {
       if (n.length < 4) {
         n = n.padStart(4, '0');
       }
-      if (index !== arr.length - 1) {
-        n = n.split('').reverse().join('');
-      }
+      n = n.split('').reverse().join('');
       for (const key in hexadecimalBinary) {
         if (hexadecimalBinary[key] === n) {
           n = key;
