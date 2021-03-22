@@ -178,36 +178,36 @@ export default class BaseConverter {
   }
 
   static octalToHexadecimal(number: string):void {
-    const octalInBinary = BaseConverter.octalToBinary(number).result;
+    const octalInBinary = BaseConverter.octalToBinary(number).result.split('').reverse().join('');
     const parts: string[] = [];
-    const addZeroLeft = (n: string) => n.padStart(4, '0');
 
     let start = 0;
     let end = 4;
     let r = octalInBinary.slice(start, end);
 
     while (r !== '') {
-      parts.unshift(r);
+      parts.push(r);
       start = end;
       end += 4;
       r = octalInBinary.slice(start, end);
     }
-    console.log(BaseConverter.octalToBinary(number).result);
-    console.log(parts);
 
-    const newParts = parts.map((n) => {
-      let v = n;
-      if (v.length < 4) {
-        v = addZeroLeft(v);
+    const treatingArray = (arr: string[]): string[] => arr.map((n, index) => {
+      if (n.length < 4) {
+        n = n.padStart(4, '0');
+      }
+      if (index !== arr.length - 1) {
+        n = n.split('').reverse().join('');
       }
       for (const key in hexadecimalBinary) {
-        if (hexadecimalBinary[key] === v) {
-          v = key;
+        if (hexadecimalBinary[key] === n) {
+          n = key;
         }
       }
-      return v;
+      return n;
     });
-
-    console.log(newParts.reverse());
+    console.log(BaseConverter.octalToBinary(number).result);
+    console.log(BaseConverter.octalToBinary(number).result.substring(4, -4));
+    console.log(treatingArray(parts).reverse());
   }
 }
