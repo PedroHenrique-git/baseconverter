@@ -23,6 +23,8 @@ link: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-run
 
 <b>Decimal to other bases</b>
 
+pass the number that will be converted and the base(2,8,16) you want in the method
+
 ```
     BaseConverter.decimalTo('45', 2)
 ```
