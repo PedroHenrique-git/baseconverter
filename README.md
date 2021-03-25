@@ -19,6 +19,14 @@ link: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-run
 
 <img src="images/1.png">
 
+<b>Decimal to other bases</b>
+
+<img src="images/2.png">
+
+<b>return</b>
+
+<img src="images/return2.png">
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
