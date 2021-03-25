@@ -50,14 +50,3 @@ export const octalBinary: Record<string, string> = {
   6: '110',
   7: '111',
 };
-
-export const ExceptionhexadecimalBinary: Record<string, string> = {
-  0: '0000',
-  1: '0001',
-  2: '0010',
-  3: '0011',
-  4: '0100',
-  5: '0101',
-  6: '0110',
-  7: '0111',
-};

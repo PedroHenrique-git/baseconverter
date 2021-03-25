@@ -1,12 +1,8 @@
 import {
   IData, hexadecimal, hexadecimalInversion, hexadecimalBinary, octalBinary,
-  ExceptionhexadecimalBinary,
 } from '../database/data';
 
 export default class BaseConverter {
-  // decimal for binary
-  // decimal for octal
-  // decimal for hexadecimal
   static decimalTo(number: string, targetBase: number): IData {
     let dividend = Number(number);
     let quotient = 0;
@@ -57,9 +53,6 @@ export default class BaseConverter {
     };
   }
 
-  // binary for decimal
-  // octal for decimal
-  // hexadecimal for decimal
   static otherBaseToDecimal(number: string, currentBase: number): IData {
     let sum = 0;
     let s = 0;
@@ -178,13 +171,15 @@ export default class BaseConverter {
     };
   }
 
-  static octalToHexadecimal(number: string):void {
+  static octalToHexadecimal(number: string): IData {
     const octalInBinary = BaseConverter.octalToBinary(number).result.split('').reverse().join('');
     const parts: string[] = [];
+    const steps: string[] = [];
 
     let start = 0;
     let end = 4;
     let r = octalInBinary.slice(start, end);
+    let result = '';
 
     while (r !== '') {
       parts.push(r);
@@ -193,11 +188,12 @@ export default class BaseConverter {
       r = octalInBinary.slice(start, end);
     }
 
-    const treatingArray = (arr: string[]): string[] => arr.map((n, index) => {
+    const treatingArray = (arr: string[]): string[] => arr.map((n) => {
+      n = n.split('').reverse().join('');
       if (n.length < 4) {
         n = n.padStart(4, '0');
       }
-      n = n.split('').reverse().join('');
+      steps.push(n);
       for (const key in hexadecimalBinary) {
         if (hexadecimalBinary[key] === n) {
           n = key;
@@ -205,8 +201,67 @@ export default class BaseConverter {
       }
       return n;
     });
-    console.log(BaseConverter.octalToBinary(number).result);
-    console.log(BaseConverter.octalToBinary(number).result.substring(4, -4));
-    console.log(treatingArray(parts).reverse());
+
+    result = treatingArray(parts).reverse().join('');
+
+    for (let i = 0; i < steps.length; i += 1) {
+      for (const key in hexadecimalBinary) {
+        if (hexadecimalBinary[key] === steps[i]) {
+          steps[i] = `${steps[i]} = ${key}`;
+        }
+      }
+    }
+
+    return {
+      steps: steps.reverse(),
+      result,
+    };
+  }
+
+  static hexadecimalToOctal(number: string): IData {
+    const hexadecimalInBinary = BaseConverter.hexadecimalToBinary(number).result.split('').reverse().join('');
+    const parts: string[] = [];
+    const steps: string[] = [];
+
+    let start = 0;
+    let end = 3;
+    let r = hexadecimalInBinary.slice(start, end);
+    let result = '';
+
+    while (r !== '') {
+      parts.push(r);
+      start = end;
+      end += 3;
+      r = hexadecimalInBinary.slice(start, end);
+    }
+
+    const treatingArray = (arr: string[]): string[] => arr.map((n) => {
+      n = n.split('').reverse().join('');
+      if (n.length < 3) {
+        n = n.padStart(3, '0');
+      }
+      steps.push(n);
+      for (const key in octalBinary) {
+        if (octalBinary[key] === n) {
+          n = key;
+        }
+      }
+      return n;
+    });
+
+    result = treatingArray(parts).reverse().join('');
+
+    for (let i = 0; i < steps.length; i += 1) {
+      for (const key in octalBinary) {
+        if (octalBinary[key] === steps[i]) {
+          steps[i] = `${steps[i]} = ${key}`;
+        }
+      }
+    }
+
+    return {
+      steps: steps.reverse(),
+      result,
+    };
   }
 }
