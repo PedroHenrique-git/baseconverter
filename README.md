@@ -17,15 +17,30 @@ link: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-run
 
 <b>Call the class where you want to use</b>
 
-<img src="images/1.png">
+```
+    import BaseConverter from './classes/BaseConverter';
+```
 
 <b>Decimal to other bases</b>
 
-<img src="images/2.png">
-
+```
+    BaseConverter.decimalTo('45', 2)
+```
 <b>return</b>
 
-<img src="images/return2.png">
+```
+    {
+        steps: [
+            '45 / 2 = 22.50 | rest = 1',
+            '22 / 2 = 11.00 | rest = 0',
+            '11 / 2 = 5.50 | rest = 1',
+            '5 / 2 = 2.50 | rest = 1',
+            '2 / 2 = 1.00 | rest = 0',
+            'lsb: 1'
+        ],
+        result: '101101'
+    }
+```
 
 ## License
 
