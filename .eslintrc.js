@@ -17,5 +17,9 @@ module.exports = {
   rules: {
     'no-underscore-dangle': 0,
     'no-restricted-syntax': 0,
+    'class-methods-use-this': 0,
+    'no-console': 0,
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
   },
 };
