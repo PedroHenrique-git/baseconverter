@@ -114,6 +114,88 @@ pass the number that will be converted and the base(2,8,16) you want in the meth
     }
 ```
 
+## octal to binary
+
+<b>pass the number you want to convert to the method</b>
+
+``` 
+    BaseConverter.octalToBinary('5375')
+```
+
+<b>return</b>
+
+``` 
+    {
+        steps: [ '5 = 101', '3 = 011', '7 = 111', '5 = 101' ],
+        result: '101011111101'
+    }
+```
+
+## hexadecimal to binary
+
+<b>pass the number you want to convert to the method</b>
+
+``` 
+    BaseConverter.hexadecimalToBinary('DEF')
+```
+
+<b>return</b>
+
+``` 
+    {
+        steps: [ 'D = 1101', 'E = 1110', 'F = 1111' ],
+        result: '110111101111'
+    }
+```
+
+## octal to hexadecimal
+
+<b>pass the number you want to convert to the method</b>
+
+``` 
+    BaseConverter.octalToHexadecimal('7226770')
+```
+
+<b>return</b>
+
+``` 
+    {
+        steps: [
+            '0001 = 1',
+            '1101 = D',
+            '0010 = 2',
+            '1101 = D',
+            '1111 = F',
+            '1000 = 8'
+        ],
+        result: '1D2DF8'
+    }
+```
+
+## hexadecimal to octal
+
+<b>pass the number you want to convert to the method</b>
+
+``` 
+    BaseConverter.hexadecimalToOctal('DFDEFABC')
+```
+
+<b>return</b>
+
+``` 
+    {
+        steps: [
+            '011 = 3', '011 = 3',
+            '111 = 7', '110 = 6',
+            '111 = 7', '101 = 5',
+            '111 = 7', '101 = 5',
+            '010 = 2', '111 = 7',
+            '100 = 4'
+        ],
+        result: '33767575274'
+    }
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
