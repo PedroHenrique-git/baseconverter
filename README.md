@@ -44,6 +44,30 @@ pass the number that will be converted and the base(2,8,16) you want in the meth
     }
 ```
 
+## Other bases (2,8,16) for decimal
+
+<b>pass the number and the base of it in the method</b>
+
+```
+    BaseConverter.otherBaseToDecimal('111000', 2)
+```
+
+<b>return</b>
+
+```
+    {
+        steps: [
+            '0 * 2^0 = 0',
+            '0 * 2^1 = 0',
+            '0 * 2^2 = 0',
+            '1 * 2^3 = 8',
+            '1 * 2^4 = 16',
+            '1 * 2^5 = 32'
+        ],
+        result: '56'
+    }
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
